@@ -2,7 +2,7 @@ import { folder, useControls } from 'leva'
 import { Perf } from 'r3f-perf'
 
 import { useRef, useState } from 'react'
-import { OrbitControls } from '@react-three/drei'
+import { OrbitControls, Text3D, Center } from '@react-three/drei'
 
 import WobblySphere from './WobblySphere/WobblySphere.jsx'
 // import { useFrame, } from '@react-three/fiber'
@@ -11,6 +11,10 @@ import WobblySphere from './WobblySphere/WobblySphere.jsx'
 // import { CylinderCollider, CuboidCollider, Physics, RigidBody } from '@react-three/rapier'
 
 export default function Experience() {
+
+    const { perfVisible } = useControls('Perf', {
+        perfVisible: true
+    })
 
     const light = useRef()
 
@@ -32,7 +36,7 @@ export default function Experience() {
     return <>
         <color args={[bColor]} attach='background' />
 
-        <Perf position='bottom-left' />
+        {perfVisible && <Perf position='bottom-left' />}
 
         <OrbitControls />
         <ambientLight intensity={0.2} color={'white'} />
@@ -49,6 +53,26 @@ export default function Experience() {
             shadow-camera-left={- 10}
             castShadow
         />
+
+        <Center position={[0, 0, 4.9]}>
+            <Text3D
+                font='./fonts/Recoleta_Medium_Regular.json'
+                position={[0, 0, 4.9]}
+                size={0.55}
+                height={0.2}
+                curveSegments={12}
+                bevelEnabled
+                bevelThickness={0.02}
+                bevelSize={0.02}
+                bevelOffset={0}
+                bevelSegments={5}
+            >
+                World Building In Progress
+                <meshStandardMaterial color="white" />
+            </Text3D>
+        </Center>
+
+
 
         <WobblySphere />
     </>
