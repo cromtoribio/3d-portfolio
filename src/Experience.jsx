@@ -16,16 +16,16 @@ export default function Experience() {
 
     const { lPosition, lColor } = useControls('Light', {
         lPosition: {
-            value: { x: -0.5, y: 1, z: 0 },
+            value: { x: -0.5, y: 1, z: 0.85 },
             step: 0.01,
             min: -20,
             max: 20,
         },
-        lColor: '#00fc94'
+        lColor: '#d3e87e'
     })
 
     const { bColor } = useControls('Canvas', {
-        bColor: '#171717'
+        bColor: '#242424'
     })
 
 
@@ -36,7 +36,19 @@ export default function Experience() {
 
         <OrbitControls />
         <ambientLight intensity={0.2} color={'white'} />
-        <directionalLight ref={light} position={[lPosition.x, lPosition.y, lPosition.z]} intensity={1} color={lColor} castShadow />
+        <directionalLight
+            ref={light}
+            position={[lPosition.x, lPosition.y, lPosition.z]}
+            intensity={3}
+            color={lColor}
+            shadow-camera-near={1}
+            shadow-camera-far={10}
+            shadow-camera-top={10}
+            shadow-camera-right={10}
+            shadow-camera-bottom={- 10}
+            shadow-camera-left={- 10}
+            castShadow
+        />
 
         <WobblySphere />
     </>

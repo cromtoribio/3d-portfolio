@@ -13,5 +13,5 @@ void main() {
     csm_DiffuseColor.rgb = mix(uColorA, uColorB, colorMix);
 
     // Shiny Tip
-    csm_Roughness = 1.0 - colorMix;
+    // csm_Roughness = 1.0 - colorMix;
 }

@@ -23,12 +23,44 @@ const uniforms = {
     uColorB: new THREE.Uniform(new THREE.Color('#ff0000'))
 }
 
+const planetUniforms = {
+    uTime: new THREE.Uniform(0),
+    uPositionFrequency: new THREE.Uniform(0.36),
+    uTimeFrequency: new THREE.Uniform(0.46),
+    uStrength: new THREE.Uniform(0.26),
+
+    uWarpedPositionFrequency: new THREE.Uniform(0.48),
+    uWarpedTimeFrequency: new THREE.Uniform(0.37),
+    uWarpedStrength: new THREE.Uniform(0.4),
+
+    uColorA: new THREE.Uniform(new THREE.Color('#000000')),
+    uColorB: new THREE.Uniform(new THREE.Color('#25c43a'))
+}
+
 const material = new CustomShaderMaterial({
     // CSM
     baseMaterial: THREE.MeshPhysicalMaterial,
     vertexShader: vertexShader,
     fragmentShader: fragmentShader,
     uniforms: uniforms,
+
+    // Mesh Physical Material
+    metalness: 0,
+    roughness: 0,
+    color: '#ffffff',
+    transmission: 0,
+    ior: 1.5,
+    thickness: 1.5,
+    transparent: true,
+    wireframe: true
+})
+
+const planetMaterial = new CustomShaderMaterial({
+    // CSM
+    baseMaterial: THREE.MeshPhysicalMaterial,
+    vertexShader: vertexShader,
+    fragmentShader: fragmentShader,
+    uniforms: planetUniforms,
 
     // Mesh Physical Material
     metalness: 0,
@@ -51,7 +83,7 @@ const depthMaterial = new CustomShaderMaterial({
     depthPacking: THREE.RGBADepthPacking
 })
 
-let geometry = new THREE.IcosahedronGeometry(4, 50)
+let geometry = new THREE.IcosahedronGeometry(4.5, 64)
 geometry = mergeVertices(geometry)
 geometry.computeTangents()
 
@@ -59,7 +91,7 @@ export default function WobblySphere() {
 
     const { positionFrequency, timeFrequency, strength, warpedPositionFrequency, warpedTimeFrequency, warpedStrength } = useControls('Wobble', {
         positionFrequency: {
-            value: 0.5,
+            value: 0.44,
             min: 0,
             max: 2,
             step: 0.001,
@@ -71,13 +103,13 @@ export default function WobblySphere() {
             step: 0.001,
         },
         strength: {
-            value: 0.1,
+            value: 0.75,
             min: 0,
             max: 2,
             step: 0.001,
         },
         warpedPositionFrequency: {
-            value: 1.85,
+            value: 0.55,
             min: 0,
             max: 2,
             step: 0.001,
@@ -89,17 +121,16 @@ export default function WobblySphere() {
             step: 0.001,
         },
         warpedStrength: {
-            value: 2.0,
+            value: 1.1,
             min: 0,
             max: 2,
             step: 0.001,
         }
-
     })
 
     const { colorA, colorB } = useControls("Wobble", {
-        colorA: "#00a348",
-        colorB: "#00cfff"
+        colorA: "#008033",
+        colorB: "#000000"
     })
 
     uniforms.uPositionFrequency.value = positionFrequency
@@ -113,18 +144,62 @@ export default function WobblySphere() {
     uniforms.uColorA.value.set(colorA)
     uniforms.uColorB.value.set(colorB)
 
+    const { planetColorA, planetColorB } = useControls("Wobble Planet", {
+        planetColorA: "#ffdc00",
+        planetColorB: "#890000"
+    })
+
+    planetUniforms.uColorA.value.set(planetColorA)
+    planetUniforms.uColorB.value.set(planetColorB)
 
     const mesh = useRef()
+    const smallMesh = useRef()
+    const medMesh = useRef()
 
     useFrame((state, delta) => {
         const time = state.clock.getElapsedTime()
 
-        uniforms.uTime.value = time * 0.05
-        mesh.current.rotation.y += delta * 0.02
+        uniforms.uTime.value = time * 0.2
+        mesh.current.rotation.y += delta * 0.05
+        smallMesh.current.rotation.y += delta * 0.5
+        // medMesh.current.rotation.y += delta * 0.8
 
+        const smallAngle = time * 0.3
+        smallMesh.current.position.x = Math.sin(smallAngle) * 5
+        smallMesh.current.position.z = Math.cos(smallAngle) * 5
+        smallMesh.current.position.y = Math.sin(smallAngle) * 5
+
+        // const medAngle = time * 0.25
+        // medMesh.current.position.x = Math.sin(medAngle * 0.5) * 5
+        // medMesh.current.position.z = Math.cos(medAngle) * 5
+        // medMesh.current.position.y = Math.sin(medAngle) * 5
     })
 
     return <>
-        <mesh ref={mesh} geometry={geometry} material={material} customDepthMaterial={depthMaterial} castShadow />
+        <mesh
+            ref={mesh}
+            geometry={geometry}
+            material={material}
+            customDepthMaterial={depthMaterial}
+        />
+
+        <mesh
+            scale={0.07}
+            position={[- 4.5, 4.5, 0]}
+            ref={smallMesh}
+            geometry={geometry}
+            material={planetMaterial}
+            customDepthMaterial={depthMaterial}
+        />
+
+        {/* <mesh
+            scale={0.08}
+            position={[- 4.5, 4.5, 0]}
+            ref={medMesh}
+            geometry={geometry}
+            material={planetMaterial}
+            customDepthMaterial={depthMaterial}
+            wireframe
+        /> */}
     </>
 }
