@@ -129,8 +129,8 @@ export default function WobblySphere() {
     })
 
     const { colorA, colorB } = useControls("Wobble", {
-        colorA: "#008033",
-        colorB: "#000000"
+        colorA: "#ffffff",
+        colorB: "#a6ff00"
     })
 
     uniforms.uPositionFrequency.value = positionFrequency
@@ -145,8 +145,8 @@ export default function WobblySphere() {
     uniforms.uColorB.value.set(colorB)
 
     const { planetColorA, planetColorB } = useControls("Wobble Planet", {
-        planetColorA: "#ffdc00",
-        planetColorB: "#890000"
+        planetColorA: "#fff8c7",
+        planetColorB: "#ffffff"
     })
 
     planetUniforms.uColorA.value.set(planetColorA)
@@ -169,15 +169,16 @@ export default function WobblySphere() {
         smallMesh.current.position.z = Math.cos(smallAngle) * 5
         smallMesh.current.position.y = Math.sin(smallAngle) * 5
 
-        // const medAngle = time * 0.25
-        // medMesh.current.position.x = Math.sin(medAngle * 0.5) * 5
-        // medMesh.current.position.z = Math.cos(medAngle) * 5
-        // medMesh.current.position.y = Math.sin(medAngle) * 5
+        const medAngle = time * 0.25
+        medMesh.current.position.x = Math.sin(medAngle) * 5
+        medMesh.current.position.z = Math.cos(medAngle) * 5
+        medMesh.current.position.y = Math.sin(medAngle) * 3
     })
 
     return <>
         <mesh
             ref={mesh}
+            position={[0, 1, 0]}
             geometry={geometry}
             material={material}
             customDepthMaterial={depthMaterial}
@@ -185,8 +186,15 @@ export default function WobblySphere() {
 
         <mesh
             scale={0.07}
-            position={[- 4.5, 4.5, 0]}
             ref={smallMesh}
+            geometry={geometry}
+            material={planetMaterial}
+            customDepthMaterial={depthMaterial}
+        />
+
+        <mesh
+            scale={0.03}
+            ref={medMesh}
             geometry={geometry}
             material={planetMaterial}
             customDepthMaterial={depthMaterial}

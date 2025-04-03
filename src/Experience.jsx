@@ -1,8 +1,8 @@
-import { folder, useControls } from 'leva'
+import { useControls } from 'leva'
 import { Perf } from 'r3f-perf'
 
-import { useRef, useState } from 'react'
-import { OrbitControls, Text3D, Center } from '@react-three/drei'
+import { useRef } from 'react'
+import { OrbitControls, Text3D, Center, Float } from '@react-three/drei'
 
 import WobblySphere from './WobblySphere/WobblySphere.jsx'
 // import { useFrame, } from '@react-three/fiber'
@@ -25,11 +25,12 @@ export default function Experience() {
             min: -20,
             max: 20,
         },
-        lColor: '#d3e87e'
+        lColor: '#ffffff'
     })
 
-    const { bColor } = useControls('Canvas', {
-        bColor: '#242424'
+    const { bColor, tColor } = useControls('Canvas', {
+        bColor: '#000000',
+        tColor: '#ffffff'
     })
 
 
@@ -54,25 +55,28 @@ export default function Experience() {
             castShadow
         />
 
-        <Center position={[0, 0, 4.9]}>
-            <Text3D
-                font='./fonts/Recoleta_Medium_Regular.json'
-                position={[0, 0, 4.9]}
-                size={0.55}
-                height={0.2}
-                curveSegments={12}
-                bevelEnabled
-                bevelThickness={0.02}
-                bevelSize={0.02}
-                bevelOffset={0}
-                bevelSegments={5}
-            >
-                World Building In Progress
-                <meshStandardMaterial color="white" />
-            </Text3D>
-        </Center>
-
-
+        <Float
+            floatIntensity={0.5}
+            rotationIntensity={0.5}
+        >
+            <Center position={[0, -5, 4.9]}>
+                <Text3D
+                    font='./fonts/VisueltProMedium_Regular.json'
+                    position={[0, -5, 4.9]}
+                    rotation={[-0.2, 0, 0]}
+                    size={0.5}
+                    height={0.2}
+                    curveSegments={12}
+                    bevelThickness={0.02}
+                    bevelSize={0.02}
+                    bevelOffset={0}
+                    bevelSegments={5}
+                >
+                    CRAFTING A NEW EXPERIENCE
+                    <meshStandardMaterial color={tColor} />
+                </Text3D>
+            </Center>
+        </Float>
 
         <WobblySphere />
     </>
