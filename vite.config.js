@@ -5,6 +5,7 @@ import glsl from "vite-plugin-glsl";
 
 export default {
     root: "src/",
+    base: "/3d-portfolio/",
     publicDir: "../public/",
     plugins: [
         // Restart server on static/public file change

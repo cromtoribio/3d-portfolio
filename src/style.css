@@ -77,3 +77,8 @@ footer a {
     text-decoration: none;
     color: white;
 }
+
+footer a:hover {
+    color: #a6ff00;
+    text-decoration: underline;
+}
