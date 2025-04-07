@@ -130,7 +130,7 @@ export default function WobblySphere() {
 
     const { colorA, colorB } = useControls("Wobble", {
         colorA: "#ffffff",
-        colorB: "#a6ff00"
+        colorB: "#00c6ff"
     })
 
     uniforms.uPositionFrequency.value = positionFrequency
@@ -178,7 +178,7 @@ export default function WobblySphere() {
     return <>
         <mesh
             ref={mesh}
-            position={[0, 1, 0]}
+            position={[0, -0.75, 0]}
             geometry={geometry}
             material={material}
             customDepthMaterial={depthMaterial}

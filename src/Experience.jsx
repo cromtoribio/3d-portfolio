@@ -1,4 +1,4 @@
-import { useControls } from 'leva'
+import { Leva, useControls } from 'leva'
 import { Perf } from 'r3f-perf'
 
 import { useRef } from 'react'
@@ -12,8 +12,9 @@ import WobblySphere from './WobblySphere/WobblySphere.jsx'
 
 export default function Experience() {
 
+    // Set to true to show Perf dashboard
     const { perfVisible } = useControls('Perf', {
-        perfVisible: true
+        perfVisible: false
     })
 
     const light = useRef()
@@ -28,13 +29,15 @@ export default function Experience() {
         lColor: '#ffffff'
     })
 
-    const { bColor, tColor } = useControls('Canvas', {
-        bColor: '#3e3e3e',
-        tColor: '#ffffff'
+    const { bColor } = useControls('Canvas', {
+        bColor: '#212121',
     })
 
 
     return <>
+
+        {/* Set to false to show Leva Controls */}
+        <Leva hidden={true} />
         <color args={[bColor]} attach='background' />
 
         {perfVisible && <Perf position='bottom-left' />}
@@ -54,29 +57,6 @@ export default function Experience() {
             shadow-camera-left={- 10}
             castShadow
         />
-
-        <Float
-            floatIntensity={0.5}
-            rotationIntensity={0.5}
-        >
-            <Center position={[0, -5, 4.9]}>
-                <Text3D
-                    font='./fonts/VisueltProMedium_Regular.json'
-                    position={[0, -5, 4.9]}
-                    rotation={[-0.2, 0, 0]}
-                    size={0.5}
-                    height={0.2}
-                    curveSegments={12}
-                    bevelThickness={0.02}
-                    bevelSize={0.02}
-                    bevelOffset={0}
-                    bevelSegments={5}
-                >
-                    CRAFTING A NEW EXPERIENCE
-                    <meshStandardMaterial color={tColor} />
-                </Text3D>
-            </Center>
-        </Float>
 
         <WobblySphere />
     </>
