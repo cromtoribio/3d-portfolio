@@ -7,7 +7,7 @@ export default function Stars() {
     const stars = useRef()
 
     useFrame((state, delta) => {
-        stars.current.rotation.y += delta * 0.003
+        stars.current.rotation.y -= delta * 0.009
     })
 
     return <Sparkles

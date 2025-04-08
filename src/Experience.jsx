@@ -31,7 +31,7 @@ export default function Experience() {
     })
 
     const { bColor } = useControls('Canvas', {
-        bColor: '#212121',
+        bColor: '#171717',
     })
 
 
