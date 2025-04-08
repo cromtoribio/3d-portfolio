@@ -180,7 +180,7 @@ export default function WobblySphere() {
         {/* Wobbly Sphere */}
         <mesh
             ref={mesh}
-            position={[0, -0.75, 0]}
+            position={[0, -1.25, 0]}
             geometry={geometry}
             material={material}
             customDepthMaterial={depthMaterial}

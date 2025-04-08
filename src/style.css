@@ -55,7 +55,7 @@ body,
 }
 
 .nav h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-family: "Recoleta", serif;
     margin-top: 0.75rem;
     margin-bottom: 0;
@@ -109,9 +109,10 @@ footer a:hover {
 
 @media screen and (max-width: 480px) {
     .nav .logo {
-        height: 30px;
+        height: 40px;
     }
     .nav h1 {
+        font-size: 2rem;
         margin-top: 0.5rem;
     }
     .nav p {
