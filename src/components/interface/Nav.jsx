@@ -5,6 +5,7 @@ export default function Nav() {
         <nav className="nav">
             <img className="logo" src={logo} alt="Eye in hexagon logo" />
             <h1>CHRIS TORIBIO</h1>
+            <p>EXPERIENCE ARCHITECT</p>
         </nav>
     </div>
 }

@@ -4,8 +4,8 @@ import CustomShaderMaterial from 'three-custom-shader-material/vanilla'
 import { mergeVertices } from 'three/examples/jsm/utils/BufferGeometryUtils.js'
 import { useFrame } from '@react-three/fiber'
 
-import vertexShader from './vertex.glsl'
-import fragmentShader from './fragment.glsl'
+import vertexShader from '../../shaders/WobblySphere/vertex.glsl'
+import fragmentShader from '../../shaders/WobblySphere/fragment.glsl'
 
 import { useControls } from 'leva'
 

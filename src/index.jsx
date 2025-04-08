@@ -1,8 +1,8 @@
 import './style.css'
 import ReactDOM from 'react-dom/client'
 import { Canvas } from '@react-three/fiber'
-import Nav from './components/Nav.jsx'
-import Footer from './components/Footer.jsx'
+import Nav from './components/interface/Nav.jsx'
+import Footer from './components/interface/Footer.jsx'
 import Experience from './Experience.jsx'
 
 const root = ReactDOM.createRoot(document.querySelector('#root'))

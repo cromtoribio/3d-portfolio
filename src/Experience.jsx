@@ -4,7 +4,8 @@ import { Perf } from 'r3f-perf'
 import { useRef } from 'react'
 import { OrbitControls } from '@react-three/drei'
 
-import WobblySphere from './WobblySphere/WobblySphere.jsx'
+import WobblySphere from './components/scene/WobblySphere.jsx'
+import Stars from './components/scene/Stars.jsx'
 // import { useFrame, } from '@react-three/fiber'
 // import { Perf } from 'r3f-perf'
 // import * as THREE from 'three'
@@ -58,6 +59,7 @@ export default function Experience() {
             castShadow
         />
 
+        <Stars />
         <WobblySphere />
     </>
 }

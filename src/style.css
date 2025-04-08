@@ -3,6 +3,11 @@
     src: url("/fonts/VisueltPro-Light.otf");
 }
 
+@font-face {
+    font-family: "Recoleta";
+    src: url("/fonts/Recoleta_Medium.otf");
+}
+
 * {
     box-sizing: border-box;
 }
@@ -50,7 +55,14 @@ body,
 }
 
 .nav h1 {
-    margin-top: 1rem;
+    font-size: 2rem;
+    font-family: "Recoleta", serif;
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+}
+
+.nav p {
+    margin-top: 0.25rem;
     margin-bottom: 0;
 }
 
@@ -93,4 +105,17 @@ footer a {
 footer a:hover {
     color: #00c6ff;
     text-decoration: underline;
+}
+
+@media screen and (max-width: 480px) {
+    .nav .logo {
+        height: 30px;
+    }
+    .nav h1 {
+        margin-top: 0.5rem;
+    }
+    .nav p {
+        font-size: 14px;
+        margin-top: 0;
+    }
 }
