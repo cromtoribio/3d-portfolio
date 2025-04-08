@@ -176,6 +176,8 @@ export default function WobblySphere() {
     })
 
     return <>
+
+        {/* Wobbly Sphere */}
         <mesh
             ref={mesh}
             position={[0, -0.75, 0]}
@@ -184,6 +186,7 @@ export default function WobblySphere() {
             customDepthMaterial={depthMaterial}
         />
 
+        {/* Planets */}
         <mesh
             scale={0.07}
             ref={smallMesh}
@@ -200,14 +203,6 @@ export default function WobblySphere() {
             customDepthMaterial={depthMaterial}
         />
 
-        {/* <mesh
-            scale={0.08}
-            position={[- 4.5, 4.5, 0]}
-            ref={medMesh}
-            geometry={geometry}
-            material={planetMaterial}
-            customDepthMaterial={depthMaterial}
-            wireframe
-        /> */}
+
     </>
 }

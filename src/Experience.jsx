@@ -2,7 +2,7 @@ import { Leva, useControls } from 'leva'
 import { Perf } from 'r3f-perf'
 
 import { useRef } from 'react'
-import { OrbitControls, Text3D, Center, Float } from '@react-three/drei'
+import { OrbitControls } from '@react-three/drei'
 
 import WobblySphere from './WobblySphere/WobblySphere.jsx'
 // import { useFrame, } from '@react-three/fiber'
